@@ -1,0 +1,1 @@
+[{"id":"4e380667.303618","type":"pythonshell in","z":"4d781efd.d24c3","name":"lastSensorsReading","pyfile":"/home/pi/IoTAquaponics/BLE NEW/Python Scripts/latestReading.py","virtualenv":"","continuous":false,"stdInData":false,"x":280,"y":360,"wires":[["bd46eeb4.fc1c"]]}]
