@@ -13,16 +13,17 @@
 *
 * Hardware platform   : Arduino Bluno
 * Sensors
-* EC  : A1
-* PH  : A2
-* Sound: A3
+* 1. PH  : A0
+* 2. EC  : A1
+* 3. TEMPERATURE:D7
+* 4. WATER LEVEL: D8
+* 5. SOUND: A2
+* 
 * RTC : I2C
-* Sound
-* Water Level: D6 
-* Temperature:D7
-*
-*Actuators
-* Fish Feeder: 
+* 
+* 
+* Actuators
+* 1. FISH FEEDER: 
 *
 * Author  :  St Peter Mbare IoT Makerspace
 * Version :  V1.0
@@ -31,7 +32,10 @@
 
 #include <SPI.h>
 #include <Wire.h>
+
 #include "Sensors.h"
+#include "FishFeeder.h"
+
 #include "Rtc.h"
 #include "OneWire.h"
 #include "Debug.h"
@@ -39,15 +43,26 @@
 
 // clock module
 Rtc rtc;
-
-// sensor monitor
+double ph;
+double temperature;
+double ec;
+bool waterLevel;
+int sound;
+String values;
+// Collection of all sensors
 Sensors sensors;
-
+FishFeeder fishFeeder;
+GravityRtc gravityRtc;
 void setup() {
-	Serial.begin(9600);
+  
+  gravityRtc.setup();
+  gravityRtc.adjustRtc(F(__DATE__), F(__TIME__));
+	
 	rtc.setup();
-	sensors.setup();
-
+  
+	sensors.setup(); //Run setup oeprations for all sensors
+  
+  Serial.begin(112500);
 
 }
 
@@ -57,37 +72,47 @@ void setup() {
 // Function Description: Get the sensor's values, and the different parameters represent the acquisition of different sensor data     
 // Parameters: 0 ph value  
 // Parameters: 1 temperature value    
-// Parameters: 3 Conductivity
+// Parameters: 2 Conductivity
+// Parameters: 3 Water Level
+// Parameters: 4 Sound
 // return value: returns a double type of data
 //********************************************************************************************
 
 unsigned long updateTime = 0;
 
 void loop() {
+	
+	fishFeeder.feedFish();
 	rtc.update();
-	sensors.update();
+	sensors.update(); //Read and update measurements for all sensors 
 	// ************************* Serial debugging ******************
 	if(millis() - updateTime > 2000)
 	{
 		updateTime = millis();
-		//Serial.print(F("ph= "));
-		//Serial.print(sensors.getValueBySensorNumber(0));
-		//Serial.print(F("  Temp= "));
-		Serial.print(sensors.getValueBySensorNumber(1));
-		//Serial.print(F("  Ec= "));
-		//Serial.print(sensors.getValueBySensorNumber(3));
+		ph=sensors.getValueBySensorNumber(0);
+		temperature=sensors.getValueBySensorNumber(1);
+		ec=sensors.getValueBySensorNumber(2);
+    waterLevel=sensors.getValueBySensorNumber(3);
+    sound=sensors.getValueBySensorNumber(4);
+    /*
+      
+    Serial.print("pH...");
+    Serial.println(ph);
+    Serial.print("Temperature...");
+    Serial.println(temperature);
+    Serial.print("EC...");
+    Serial.println(ec);
+    Serial.print("WaterLevel...");
+    Serial.println(waterLevel);
+    Serial.print("Sound...");
+    Serial.println(sound);*/
+
+    waterLevel=!waterLevel;
+    values=String(ph)+" "+String(temperature)+" "+String(ec)+" "+String(waterLevel)+" "+String("1");
+    Serial.println(values);
+    delay(500);
 	}
+  //CHECK FISH FEED SCHEDULES AND FEED NOT ACTUATE ALL
+
+  
 }
-
-
-
-//* ***************************** Print the relevant debugging information ************** ************ * /
-// Note: Arduino M0 need to replace Serial with SerialUSB when printing debugging information
-
-// ************************* Serial debugging ******************
-//Serial.print("ph= ");
-//Serial.print(sensors.getValueBySensorNumber(0));
-//Serial.print("  Temp= ");
-//Serial.print(sensors.getValueBySensorNumber(1));
-//Serial.print("  EC= ");
-//Serial.println(sensors.getValueBySensorNumber(3));
