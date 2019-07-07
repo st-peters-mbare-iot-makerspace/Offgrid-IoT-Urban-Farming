@@ -21,7 +21,8 @@
 #include "Ph.h"
 #include "Ec.h"
 #include "Temperature.h"
-
+#include "WaterLevel.h"
+#include "Sound.h"
 //********************************************************************************************
 // function name: sensors []
 // Function Description: Store the array of sensors
@@ -39,8 +40,9 @@ Sensors::Sensors()
 
 	this->sensors[0] = new Ph(); //Ph Sensor instance as array element
 	this->sensors[1] = new Temperature(7); //Temperature Sensor instance on Digital pin 7 as array element
-	this->sensors[3] = new Ec(this->sensors[1]); //as array element
-	
+	this->sensors[2] = new Ec(this->sensors[1]); //as array element
+	this->sensors[3] = new WaterLevel(8);
+  this->sensors[4] = new Sound(A2);
 }
 
 //********************************************************************************************

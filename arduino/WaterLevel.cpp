@@ -1,5 +1,5 @@
 ﻿/*********************************************************************
-* Sensors.h
+* WaterLevel.h
 *
 * Copyright (C)    2019   St Peters Mbare IoT Makerspace
 * 
@@ -15,34 +15,21 @@
 * Version :  V1.0
 * Date    :  2019-05-25
 **********************************************************************/
-
 #pragma once
-#include "Sensor.h"
-/*
-sensors :
-0,ph
-1,ec
-2.temperature
-3.waterlevel
-4.sound
-*/
-class Sensors
-{
-private:
-	static const int SensorCount = 10;
+#include "WaterLevel.h"
+#include "Arduino.h"
 
-public:
-	Sensor *sensors[SensorCount] = {0}; //Array of sensors
-public:
-	Sensors();
-	~Sensors();
-
-	// initialize all sensors
-	void  setup ();
-
-	// update all sensor values
-	void  update ();
-
-	// Get the sensor data
-	double getValueBySensorNumber(int num);
-};
+  WaterLevel::WaterLevel(int pin){
+    this->pin=pin;
+  }
+	void WaterLevel::setup(){
+    pinMode(pin,INPUT);
+	}
+	
+	void WaterLevel::update(){
+    notLeaking=digitalRead(pin);   
+	}
+	
+	double WaterLevel::getValue(){
+    return notLeaking;
+	}

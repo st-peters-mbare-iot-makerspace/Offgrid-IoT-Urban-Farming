@@ -1,5 +1,5 @@
 ﻿/*********************************************************************
-* Sensors.h
+* Sound.cpp
 *
 * Copyright (C)    2019   St Peters Mbare IoT Makerspace
 * 
@@ -15,34 +15,19 @@
 * Version :  V1.0
 * Date    :  2019-05-25
 **********************************************************************/
+#include "Sound.h"
+#include "Arduino.h"
 
-#pragma once
-#include "Sensor.h"
-/*
-sensors :
-0,ph
-1,ec
-2.temperature
-3.waterlevel
-4.sound
-*/
-class Sensors
-{
-private:
-	static const int SensorCount = 10;
-
-public:
-	Sensor *sensors[SensorCount] = {0}; //Array of sensors
-public:
-	Sensors();
-	~Sensors();
-
-	// initialize all sensors
-	void  setup ();
-
-	// update all sensor values
-	void  update ();
-
-	// Get the sensor data
-	double getValueBySensorNumber(int num);
-};
+  Sound::Sound(int pin){
+    this->pin=pin;
+  }
+  
+	void Sound::setup(){
+    
+	}
+	void Sound::update(){
+    soundIn=analogRead(pin);
+	}
+	double Sound::getValue(){
+    return soundIn;
+	}

@@ -1,0 +1,22 @@
+0. Connect to Raspberry Pi
+ssh pi@192.168.43.8
+login as: pi
+password: raspberry
+
+1. Change wifi settings
+
+sudo nano /etc/network/interfaces
+address 192.168.1.8
+#address 192.168.43.8
+
+gateway 192.168.1.1
+#gateway 192.168.43.1
+
+2. To Save
+Ctl + o
+
+3. To quit 
+Ctl + x
+
+4. Restart Raspberry Pi
+sudo reboot

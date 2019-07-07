@@ -1,5 +1,5 @@
 ﻿/*********************************************************************
-* Sensors.h
+* Actuator.h
 *
 * Copyright (C)    2019   St Peters Mbare IoT Makerspace
 * 
@@ -15,34 +15,11 @@
 * Version :  V1.0
 * Date    :  2019-05-25
 **********************************************************************/
-
 #pragma once
-#include "Sensor.h"
-/*
-sensors :
-0,ph
-1,ec
-2.temperature
-3.waterlevel
-4.sound
-*/
-class Sensors
+class Actuator
 {
-private:
-	static const int SensorCount = 10;
-
 public:
-	Sensor *sensors[SensorCount] = {0}; //Array of sensors
-public:
-	Sensors();
-	~Sensors();
-
-	// initialize all sensors
-	void  setup ();
-
-	// update all sensor values
-	void  update ();
-
-	// Get the sensor data
-	double getValueBySensorNumber(int num);
+	virtual void setup()		= 0;
+	virtual void actuate()		= 0;
+	//virtual double getValue()	= 0;
 };
