@@ -2,7 +2,6 @@
 
 ## Project Background
 
-### SDG Goal 1: Eradicate Extreme Poverty & Internet Society’s Access and Development goals
 Mbare is one of oldest, poorest, crime-ridden and unhygienic townships in Zimbabwe. For instance in the year 2016, Mbare was the most affected area by a Typhoid outbreak, which resulted in 9 deaths, 85 confirmed cases and 2,352 suspected cases. Availing access to tools and information on how communities can use open technologies in general and IoT in particular to alleviate abject poverty would be a small but worthy step towards igniting the fight against hunger and destitution in Mbare.
 
 ### Inspiration from IoT Makerspace Project
