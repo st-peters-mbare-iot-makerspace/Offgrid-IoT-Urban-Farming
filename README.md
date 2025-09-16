@@ -1,47 +1,68 @@
-# OffGrid IoT Urban Farming
+# 🌱 Off-Grid IoT Urban Farming
 
-## Project Background
+## Overview
+Off-Grid IoT Urban Farming is a community-driven initiative that demonstrates how **low-cost IoT, open-source technologies, and aquaponics** can be combined to tackle food insecurity in underserved urban areas.  
 
-Mbare is one of oldest, poorest, crime-ridden and unhygienic townships in Zimbabwe. For instance in the year 2016, Mbare was the most affected area by a Typhoid outbreak, which resulted in 9 deaths, 85 confirmed cases and 2,352 suspected cases. Availing access to tools and information on how communities can use open technologies in general and IoT in particular to alleviate abject poverty would be a small but worthy step towards igniting the fight against hunger and destitution in Mbare.
+The project explores how sensors, microcontrollers, and edge devices can create a **self-sustaining, reproducible farming model** that reduces resource use, improves yields, and empowers communities.
 
-### Inspiration from IoT Makerspace Project
-The idea of starting a Community Aquaponics Project in Mbare was inspired by a mini-project implemented by students in the IoT Makerspace Project in 2016 at St Peter's Secondary School. As a way to engage the Makerspace students in a real problem-solving project two Arduino-based Open Aquarium kits were procured from Cooking Hacks in Spain. 
+---
 
-### Aquaponics in IBC Totes: Reproducible, Low-Tech, Self-Sustaining, High-Yields Farming
+## Why This Project?
+Urban communities in Zimbabwe (and many other regions) face overlapping challenges:  
+- Limited access to affordable fresh food  
+- Poor sanitation and recurring disease outbreaks  
+- Scarce water and land resources  
+- Limited exposure to practical, emerging technologies  
 
-The ultimate goal of the project is to develop an Aquaponics setup that is reproducible using inexpensive technology which is self-sustaining and results in predictable high yields. The overall intention is to balance high quality setup with the least cost by using best technology that is free and open source. 
+By leveraging **aquaponics** and **open IoT systems**, this project aims to turn these constraints into opportunities for **food security, sustainability, and skills development**.
 
-Aquaponics combines the benefits of Aquaculture and Hydroponics to create a self-sustaining farming ecosystem. The system will contain a water filtration system, an advanced sensor suite and remote monitoring capabilities. Utilising 1000 litres IBC totes, participants will grow vegetables and fish using data collecting sensors and environment-regulating actuators. 
+---
 
-## Project Summary
+## Aquaponics in Action
+Aquaponics combines **aquaculture (raising fish)** with **hydroponics (growing plants in water)** to form a circular ecosystem:
+- Fish waste provides natural fertilizer for plants.  
+- Plants filter and clean the water, which is recirculated back to the fish.  
+- IoT sensors and actuators regulate and optimize the system.  
 
-### Arduino and Rspberry Pi Applications
-Arduino units will be connected to a sensor network and actuators within the IBC totes housing the Aquaponics system. IoT applications including a Nodered web application and MongoDB database will run on Raspberry Pi units and provide real-time management information in the form of graphs and pattern representations.
+Our implementation uses **1000L IBC totes** as growing units. These systems are:  
+- **Low-cost and reproducible** — built with accessible materials  
+- **Efficient** — up to 90% less water than conventional farming  
+- **Chemical-free** — no pesticides, closed system  
+- **Resilient** — off-season vegetable growth enabled through climate control  
 
-### Optimised Farming
-The project will use 90 percent less water than conventional farms and the water will be recycled. Fertilizer to plants in the form of fish waste is recycled. The project will not use pesticides as the containers are essentially sealed environments. The controlled environment will also enable vegetables to be grown in normally off-season periods as the climatic conditions can be controlled. 
+---
 
-## System Setup
-
+## System Architecture
 
 ### Hardware
-1. Arduino Uno 
-2. Arduino IO expansion Shield
-3. Electroconductivity Sensor
-4. Temperature Sensor
-5. Ph Sensor
-6. Water Level Sensor
-7. Fish Feeder 
-8. Raspberry Pi 3
-9. RTC Module
-10. Analog Isolator
-
+- **Microcontrollers & Compute**: Arduino Uno, Raspberry Pi 3  
+- **Sensors**:  
+  - Electroconductivity (nutrient concentration)  
+  - Temperature  
+  - pH  
+  - Water level  
+- **Actuators**: Fish feeder, water pumps, aerators  
+- **Other Modules**: RTC (real-time clock), analog isolator  
 
 ### Software
-1. Arduino 1.8
-2. Node.js 8 (LTS) and npm 3
-3. Node-red 16
-4. Node-red nodes: Dashboard, Serialport, mongodb
-5. Mongodb NoSQL DBMS
-6. Kubernetes
+- **Arduino IDE (≥1.8)** for sensor + actuator programming  
+- **Node.js (LTS)** and **npm** for web services  
+- **Node-RED** with Dashboard, SerialPort, and MongoDB nodes for visual IoT flows  
+- **MongoDB** for time-series sensor data storage  
+- **Kubernetes (K3s/K8s)** for scalable service orchestration  
 
+---
+
+## Features
+- 📊 **Real-time Monitoring**: Graphs and dashboards powered by Node-RED  
+- ♻️ **Optimized Farming**: Automated water recycling and nutrient management  
+- 🚫 **Zero Pesticides**: Closed, controlled environment reduces risks  
+- 📱 **Remote Access**: Data visualization on mobile or web dashboards  
+- 🔗 **Open & Extensible**: Built with open-source hardware and software  
+
+---
+
+## Getting Started
+1. Clone this repository:  
+   ```bash
+   git clone https://github.com/<your-username>/offgrid-iot-urban-farming.git
